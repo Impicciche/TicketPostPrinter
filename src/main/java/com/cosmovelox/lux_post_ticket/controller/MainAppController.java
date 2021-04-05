@@ -34,23 +34,27 @@ public class MainAppController {
 		getInputs();
 		
 		Printable ticket = null;
+		OrientationRequested orientation=null;
 		
 		
 		if(view.getTypeDocumentWhite().isSelected()) {
 			ticket = new LuxPostTicketWhite(sender, receiver, document.isNotification());
+			orientation = OrientationRequested.PORTRAIT;
 		}
 		
 		if(view.getTypeDocumentRose().isSelected()) {
 			ticket = new LuxPostTicketRose(sender, receiver);
+			orientation = OrientationRequested.LANDSCAPE;
 		}
 		if(view.getTypeDocumentLetter().isSelected()) {
 			ticket = new LuxPostTicketLetter(sender, receiver);
+			orientation = OrientationRequested.LANDSCAPE;
 		}
 		
 		
 		PrintService printService = new PrintService(ticket);
 		
-		printService.print(document.getNumberCopies(), OrientationRequested.PORTRAIT);
+		printService.print(document.getNumberCopies(), orientation);
 		
 	}
 	

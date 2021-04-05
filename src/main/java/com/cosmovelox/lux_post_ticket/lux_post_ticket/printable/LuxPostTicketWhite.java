@@ -8,7 +8,6 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 
 import com.cosmovelox.lux_post_ticket.lux_post_ticket.model.Person;
-import com.cosmovelox.lux_post_ticket.lux_post_ticket.service.PrintService;
 
 
 public class LuxPostTicketWhite extends AbstractLuxPostTicket implements Printable {
@@ -31,14 +30,6 @@ public class LuxPostTicketWhite extends AbstractLuxPostTicket implements Printab
     	
     	this.notification = notification;
 
-        /* Construct the print request specification.
-        * The print data is a Printable object.
-        * the request additonally specifies a job name, 2 copies, and
-        * landscape orientation of the media.
-        */
-        PrintService printer = new PrintService(this);
-        
-        printer.print();
     }
 
     public int print(Graphics g,PageFormat pf,int pageIndex) {
@@ -48,7 +39,7 @@ public class LuxPostTicketWhite extends AbstractLuxPostTicket implements Printab
                     g2d.setColor(Color.black);
                     
                     if(notification) {
-                    	g2d.fillRect(offsetX, offsetY, 8, 8);
+                    	g2d.fillRect(offsetTextX+offsetX-2, offsetY-2, 8, 8);
                     }
                     g2d.setFont(new Font("TimesRoman", Font.PLAIN, 14)); 
                     g2d.drawString(sender.getFirstname() + " " +sender.getLastname(), offsetTextX+offsetX, offsetTextY+offsetY);

@@ -6,10 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 
-import javax.print.attribute.standard.OrientationRequested;
 
 import com.cosmovelox.lux_post_ticket.lux_post_ticket.model.Person;
-import com.cosmovelox.lux_post_ticket.lux_post_ticket.service.PrintService;
 
 
 public class LuxPostTicketLetter extends AbstractLuxPostTicket implements Printable {
@@ -28,14 +26,6 @@ public class LuxPostTicketLetter extends AbstractLuxPostTicket implements Printa
     	super(sender, receiver);
     	
 
-        /* Construct the print request specification.
-        * The print data is a Printable object.
-        * the request additonally specifies a job name, 2 copies, and
-        * landscape orientation of the media.
-        */
-        PrintService printer = new PrintService(this);
-        
-        printer.print(1, OrientationRequested.LANDSCAPE);
     }
 
     public int print(Graphics g,PageFormat pf,int pageIndex) {
